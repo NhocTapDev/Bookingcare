@@ -12,10 +12,18 @@ module.exports = {
      * }], {});
     */
     return queryInterface.bulkInsert("Users", [
+      
       {
+        email: "admin@gmail.com",
+        password: "123456",
         firstName: "Dat",
         lastName: "Nguyen Trong",
-        email: "admin@gmail.com",
+        address: "Thanh Hoa",
+        phoneNumber: "0123456789",
+        gender: 1,
+        image: "",
+        roleId: "",
+        positionId: "",
         createdAt: new Date(),
         updatedAt: new Date(),
       }
