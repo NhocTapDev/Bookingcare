@@ -1,4 +1,37 @@
 {
+    "homeheader": {
+        "speciality": "Medical specialty",
+        "searchdoctor": "Find a doctor by specialty",
+        "health-facility": "Health facilities",
+        "select-room": "Choose hospital clinic",
+        "doctor": "Doctor",
+        "select-doctor": "Choose a good doctor",
+        "handbook": "Hanbook",
+        "follow-posts": "Follow useful articles",
+        "support": "Support",
+        "welcome": "Welcome, "
+    },
+    "banner": {
+        "title-banner-up": "MEDICAL PLATFORM",
+        "title-banner-down": "COMPREHENSIVE HEALTH CARE",
+        "child1": "Specialist Examination",
+        "child2": "Remote examination",
+        "child3": "General examination",
+        "child4": "Medical test",
+        "child5": "Mental health",
+        "child6": "Dental examination",
+        "search": "Find a medical specialty"
+    },
+    "homepage": {
+        "outstanding-doctor": "Last week's featured doctor",
+        "outstanding-medical-facility": "Outstanding medical facilitys",
+        "more-infor": "More Infor",
+        "specialty-popular": "Popular specialties",
+        "media-talk-about": "Media",
+        "media-talk-about-content": "With 27 years of establishment and development, Ho Chi Minh City University of Medicine and Pharmacy Hospital is a prestigious health care address for millions of patients. The hospital always strives to promote sustainable core values, which are: Pioneer in patient treatment, scientific research, training and administration; UNDERSTANDING the physical and emotional pain of the patient to provide optimal treatment solutions; Maintain the STANDARD of the Teacher - Doctor, always being a shining example for the next generation to follow; Manage quality, ensure SAFETY for patients and medical staff.",
+        "footer-infor": "Huynh Minh Duc. For more information, please visit my facebook",
+        "footer-infor-click-here": "CLick here"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",
