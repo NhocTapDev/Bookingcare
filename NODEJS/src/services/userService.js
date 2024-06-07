@@ -25,7 +25,9 @@ let handleUserLogin = (email, password) => {
           attributes: [
             "email",
             "roleId",
-            "password"
+            "password",
+            "firstName",
+            "lastName",
           ],
           raw: true,
         });
@@ -120,8 +122,10 @@ let createNewUser = (data) => {
           lastName: data.lastName,
           address: data.address,
           phoneNumber: data.phoneNumber,
-          gender: data.gender === '1' ? true : false,
-          roleId: data.roleId
+          gender: data.gender,
+          roleId: data.roleId,
+          positionId: data.positionId,
+          image: data.image,
         });
         resolve({
           errCode: 0,
@@ -176,14 +180,16 @@ let updateUserData = (data) => {
         user.firstName = data.firstName;
         user.lastName = data.lastName;
         user.address = data.address;
+        user.phoneNumber = data.phoneNumber;
+        if (data.gender) user.gender = data.gender;
+        if (data.positionId) user.positionId = data.positionId;
+        if (data.roleId) user.roleId = data.roleId;
+        // user.status = data.status;
+        if (data.image) user.image = data.image;
+        user.image = data.image;
 
         await user.save();
 
-        // await db.User.save({
-        //   firstName: data.firstName,
-        //   lastName: data.lastName,
-        //   address: data.address
-        // });
         resolve({
           errCode: 0,
           message: 'Update the user success!'

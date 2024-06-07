@@ -41,11 +41,12 @@ class Header extends Component {
     //     });
     // }
 
-    handleLogout = () => {
-        this.props.history.push("/login");
-    }
+    // handleLogout = () => {
+    //     this.props.history.push("/login");
+    // }
 
     render() {
+        const { processLogout } = this.props;
         const { language, userInfo } = this.props;
 
         return (
@@ -59,7 +60,13 @@ class Header extends Component {
                     <span
                         className="welcome">
                         <FormattedMessage id="homeheader.welcome" />
-                        {userInfo && userInfo.firstName ? userInfo.firstName : " "} !
+                        <span>
+                            {userInfo && userInfo.firstName ? userInfo.firstName : " "}
+                        </span>
+                        <span> </span>
+                        <span>
+                            {userInfo && userInfo.lastName ? userInfo.lastName : " "}
+                        </span>
                     </span>
                     <span
                         className={language === LANGUAGES.VI ? "language-vi active" : "language-vi"}
@@ -73,19 +80,19 @@ class Header extends Component {
                     >
                         EN
                     </span>
-                    <div
+                    {/* <div
                         className="btn btn-logout"
                         onClick={() => this.handleLogout()}
                         title="Log out"
                     >
                         <i className="fas fa-sign-out-alt"></i>
+                    </div> */}
+                    <div className="btn btn-logout" onClick={processLogout} title="Log out">
+                        <i className="fas fa-sign-out-alt"></i>
                     </div>
                 </div>
 
                 {/* nút logout */}
-                {/* <div className="btn btn-logout" onClick={processLogout} title="Log out">
-                    <i className="fas fa-sign-out-alt"></i>
-                </div> */}
             </div>
         );
     }
@@ -102,6 +109,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        processLogout: () => dispatch(actions.processLogout()),
         changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language))
     };
 };

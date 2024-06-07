@@ -10,13 +10,19 @@ class OutStandingDoctor extends Component {
 
     return (
       <div className="section-share section-outstanding-doctor">
-        <div className="section-container container col-12 col-sm-12 col-md-12 col-xl-12 col-lg-12">
+        <div className="section-container container">
           <div className="section-header">
             <div className="section-header-title">
-              <span>Bác sĩ nổi bật tuần qua</span>
+              <span>
+                <FormattedMessage id="homepage.outstanding-doctor" />
+              </span>
             </div>
             <div className="section-header-option">
-              <button><span>Xem thêm</span></button>
+              <button>
+                <span>
+                  <FormattedMessage id="homepage.more-infor" />
+                </span>
+              </button>
             </div>
           </div>
           <div className="section-content">

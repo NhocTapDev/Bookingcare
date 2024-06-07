@@ -12,8 +12,7 @@ class About extends Component {
         <div className="section-container container">
           <div className="section-about-header">
             <div className="section-header-title">
-              <span>Truyền thông, tin tức</span>
-              {/* <FormattedMessage id="homepage.media-talk-about" /> */}
+              <FormattedMessage id="homepage.media-talk-about" />
             </div>
           </div>
           <div className="section-about-content d-flex">
@@ -30,8 +29,7 @@ class About extends Component {
             </div>
             <div className="content-right">
               <p>
-              Với 27 năm hình thành và phát triển, Bệnh viện Đại học Y Dược TPHCM là địa chỉ chăm sóc sức khỏe uy tín của hàng triệu người bệnh. Bệnh viện luôn nỗ lực phát huy những giá trị cốt lõi bền vững, đó là: TIÊN PHONG trong điều trị người bệnh, nghiên cứu khoa học, đào tạo và quản trị; THẤU HIỂU nỗi đau về thể xác lẫn tinh thần của người bệnh để đưa ra những giải pháp điều trị tối ưu; Giữ vững sự CHUẨN MỰC của người Thầy giáo – Thầy thuốc, luôn là tấm gương sáng để thế hệ tiếp nối noi theo; Quản lý chất lượng, đảm bảo AN TOÀN cho người bệnh và nhân viên y tế.
-                {/* <FormattedMessage id="homepage.media-talk-about-content" /> */}
+                <FormattedMessage id="homepage.media-talk-about-content" />
               </p>
             </div>
           </div>

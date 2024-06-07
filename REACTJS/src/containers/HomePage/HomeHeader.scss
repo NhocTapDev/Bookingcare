@@ -19,9 +19,12 @@
       justify-content: center;
 
       .header-logo {
-        background: url("../../assets/hospital-icon.png") center center no-repeat;
-        height: 100%;
-        width: 100%;
+        background: url("../../assets/hospital-icon.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        height: 60px;
+        width: 60px;
         cursor: pointer;
       }
     }
@@ -33,7 +36,7 @@
       align-items: center;
       
       .child-content {
-        padding: 10px 0;
+        padding: 5px;
         cursor: pointer;
 
         b {
@@ -55,7 +58,7 @@
 
       .search {
         position: relative !important;
-        width: fit-content;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -325,13 +328,8 @@
         // width: 25%;
 
         .search {
-          width: 50%;
           padding: 0;
-    
-          i {
-            padding: 10px;
-            cursor: pointer;
-          }
+
           input {
             height: 25px;
           }
@@ -412,6 +410,18 @@
         align-items: center;
 
         .support {
+          display: none;
+        }
+
+        .language-vi {
+          display: none;
+        }
+  
+        .language-en {
+          display: none;
+        }
+  
+        .avatar-profile {
           display: none;
         }
       }

@@ -31,22 +31,22 @@
         }
 
         .language-en {
-          margin-right: 15px;
-          margin-left: 10px;
+          padding: 10px 5px;
           cursor: pointer;
     
           &.active {
             opacity: 1;
-            color: #fff;
+            color: #ffa500;
           }
         }
     
         .language-vi {
+          padding: 10px 5px;
           cursor: pointer;
     
           &.active {
             opacity: 1;
-            color: #fff;
+            color: #ffa500;
           }
         }
       }

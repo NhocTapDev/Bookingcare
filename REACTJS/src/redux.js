@@ -22,6 +22,7 @@ export const history = createBrowserHistory({ basename: process.env.REACT_APP_RO
 const reduxStateSyncConfig = {
     whitelist: [
         actionTypes.APP_START_UP_COMPLETE,
+        actionTypes.CHANGE_LANGUAGE
     ]
 }
 
@@ -33,7 +34,7 @@ const middleware = [
 ]
 if (isDevelopment) middleware.push(logger);
 
-const composeEnhancers = (isDevelopment && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
+const composeEnhancers = isDevelopment && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
 const reduxStore = createStore(
     rootReducer,

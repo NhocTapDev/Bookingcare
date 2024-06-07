@@ -18,7 +18,7 @@ class HomeHeader extends Component {
       <React.Fragment>
         <div className="home-header-container">
           <div className="container home-header-content">
-            <div className="left-content col-2 col-lg-2 col-xl-2 col-sm-2">
+            <div className="left-content col-3 col-lg-2 col-xl-1 col-sm-3">
               <div
                 className="header-logo"
                 onClick={() => {
@@ -26,7 +26,7 @@ class HomeHeader extends Component {
                 }}
               ></div>
             </div>
-            <div className="center-content col-lg-4 col-xl-6">
+            <div className="center-content col-lg-5 col-xl-6">
               <div className="child-content">
                 <b>
                   <FormattedMessage id="homeheader.speciality" />
@@ -64,7 +64,7 @@ class HomeHeader extends Component {
                 </div>
               </div>
             </div>
-            <div className="right-content col-10 col-lg-6 col-xl-4 col-sm-10">
+            <div className="right-content col-9 col-lg-5 col-xl-5 col-sm-9">
               <div
                 className="search"
               // onClick={() => this.handleClickShowHomeMenuSearchSpecialty()}
@@ -215,6 +215,7 @@ class HomeHeader extends Component {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    userInfo: state.user.userInfo,
     language: state.app.language
   };
 };
