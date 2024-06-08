@@ -3,10 +3,34 @@ import { connect } from "react-redux";
 import "./OutStandingDoctor.scss";
 import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
+import * as actions from "../../../store/actions";
+import { LANGUAGES } from "../../../utils";
 
 class OutStandingDoctor extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrDoctors: []
+    };
+  }
+
+  componentDidMount() {
+    this.props.loadTopDoctors();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+      this.setState({
+        arrDoctors: this.props.topDoctorsRedux
+      });
+    }
+  }
+
   render() {
+    console.log('sgsdgsd',this.props.topDoctorsRedux)
+    let arrDoctors = this.state.arrDoctors;
+    let { language } = this.props;
 
     return (
       <div className="section-share section-outstanding-doctor">
@@ -27,82 +51,43 @@ class OutStandingDoctor extends Component {
           </div>
           <div className="section-content">
             <Slider {...this.props.settings}>
-              <div className="slider-customize">
-                <div className="slider-img">
-                  <div className="img"></div>
-                </div>
-                <div className="slider-title">
-                  <span className="slider-doctor-position">Giáo Sư, Tiến Sĩ</span>
-                  <br></br>
-                  <span className="slider-doctor-name">Nguyễn Trọng Đạt</span>
-                  <br></br>
-                  <span className="slider-doctor-specialty">Cơ Xương Khớp</span>
-                </div>
-              </div>
-              <div className="slider-customize">
-                <div className="slider-img">
-                  <div className="img"></div>
-                </div>
-                <div className="slider-title">
-                  <span className="slider-doctor-position">Giáo Sư, Tiến Sĩ</span>
-                  <br></br>
-                  <span className="slider-doctor-name">Nguyễn Trọng Đạt</span>
-                  <br></br>
-                  <span className="slider-doctor-specialty">Cơ Xương Khớp</span>
-                </div>
-              </div>
-              <div className="slider-customize">
-                <div className="slider-img">
-                  <div className="img"></div>
-                </div>
-                <div className="slider-title">
-                  <span className="slider-doctor-position">Giáo Sư, Tiến Sĩ</span>
-                  <br></br>
-                  <span className="slider-doctor-name">Nguyễn Trọng Đạt</span>
-                  <br></br>
-                  <span className="slider-doctor-specialty">Cơ Xương Khớp</span>
-                </div>
-              </div>
-              <div className="slider-customize">
-                <div className="slider-img">
-                  <div className="img"></div>
-                </div>
-                <div className="slider-title">
-                  <span className="slider-doctor-position">Giáo Sư, Tiến Sĩ</span>
-                  <br></br>
-                  <span className="slider-doctor-name">Nguyễn Trọng Đạt</span>
-                  <br></br>
-                  <span className="slider-doctor-specialty">Cơ Xương Khớp</span>
-                </div>
-              </div>
-              <div className="slider-customize">
-                <div className="slider-img">
-                  <div className="img"></div>
-                </div>
-                <div className="slider-title">
-                  <span className="slider-doctor-position">Giáo Sư, Tiến Sĩ</span>
-                  <br></br>
-                  <span className="slider-doctor-name">Nguyễn Trọng Đạt</span>
-                  <br></br>
-                  <span className="slider-doctor-specialty">Cơ Xương Khớp</span>
-                </div>
-              </div>
-              <div className="slider-customize">
-                <div className="slider-img">
-                  <div className="img"></div>
-                </div>
-                <div className="slider-title">
-                  <span className="slider-doctor-position">Giáo Sư, Tiến Sĩ</span>
-                  <br></br>
-                  <span className="slider-doctor-name">Nguyễn Trọng Đạt</span>
-                  <br></br>
-                  <span className="slider-doctor-specialty">Cơ Xương Khớp</span>
-                </div>
-              </div>
+              {arrDoctors && arrDoctors.length > 0 && arrDoctors.map((item, index) => {
+                let imageBase64 = "";
+                if (item.image) {
+                  imageBase64 = new Buffer(item.image, "base64").toString("binary");
+                }
+                let positionVi = `${item.positionData.valueVi}`;
+                let positionEn = `${item.positionData.valueEn}`;
+                let nameVi = `${item.lastName} ${item.firstName}`;
+                let nameEn = `${item.firstName} ${item.lastName}`;
+                return (
+                  <div className="slider-customize" key={index}>
+                    <div className="slider-img">
+                      <div className="img"
+                        style={{
+                          backgroundImage: `url(${imageBase64})`
+                        }}
+                      ></div>
+                    </div>
+                    <div className="slider-title">
+                      <span className="slider-doctor-position">
+                        {language === LANGUAGES.VI ? positionVi : positionEn}
+                      </span>
+                      <br></br>
+                      <span className="slider-doctor-name">
+                        {language === LANGUAGES.VI ? nameVi : nameEn}
+                      </span>
+                      <br></br>
+                      <span className="slider-doctor-specialty">Cơ Xương Khớp</span>
+                    </div>
+                  </div>
+                )
+              })
+              }
             </Slider>
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
     );
   }
 
@@ -111,12 +96,14 @@ class OutStandingDoctor extends Component {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    topDoctorsRedux: state.admin.topDoctors,
     language: state.app.language
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    loadTopDoctors: () => dispatch(actions.fetchTopDoctor())
   };
 };
 

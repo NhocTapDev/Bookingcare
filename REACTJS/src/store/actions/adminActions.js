@@ -8,7 +8,7 @@ import {
     editUserService,
     getTopDoctorHomeService,
     getAllDoctors,
-    saveDetailDoctor,
+    saveDetailDoctorService,
     getAllSpecialty,
     getAllClinic,
 } from "../../services/userService";
@@ -227,17 +227,6 @@ export const editAUser = (data) => {
     };
 };
 
-// export const editOnlyOneUser = (data) => {
-//     return async (dispatch, getState) => {
-//         try {
-//             let res = await editUserService(data);
-//             if (res) return res;
-//         } catch (e) {
-//             console.log("EditUserFailed error", e);
-//         }
-//     };
-// };
-
 export const editUserSuccess = () => ({
     type: actionTypes.EDIT_USER_SUCCESS,
 });
@@ -245,3 +234,92 @@ export const editUserSuccess = () => ({
 export const editUserFailed = () => ({
     type: actionTypes.EDIT_USER_FAILED,
 });
+
+export const fetchTopDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getTopDoctorHomeService("");
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+                    dataDoctors: res.data,
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+                });
+            }
+        } catch (e) {
+            console.log("FETCH_TOP_DOCTORS_FAILED", e);
+            dispatch({
+                type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+            });
+        }
+    };
+};
+
+export const fetchAllDoctors = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctors();
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+                    dataDr: res.data,
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+                });
+            }
+        } catch (e) {
+            console.log("FETCH_ALL_DOCTORS_FAILED", e);
+            dispatch({
+                type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+            });
+        }
+    };
+};
+
+export const saveDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveDetailDoctorService(data);
+            const language = getState().app.language;
+
+            if (res && res.errCode === 0) {
+                if (language && language === "vi") {
+                    toast.success("Lưu thông tin chi tiết bác sĩ thành công!");
+                } else {
+                    toast.success("Save Infor Detail Doctor succeed!");
+                }
+
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+                });
+            } else {
+
+                if (language && language === "vi") {
+                    toast.error("Lưu thông tin chi tiết bác sĩ thất bại!");
+                } else {
+                    toast.error("Save Infor Detail Doctor error!");
+                }
+
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+                });
+            }
+        } catch (e) {
+            const language = getState().app.language;
+            if (language && language === "vi") {
+                toast.error("Lưu thông tin chi tiết bác sĩ thất bại!");
+            } else {
+                toast.error("Save Infor Detail Doctor error!");
+            }
+            console.log("SAVE_DETAIL_DOCTOR_FAILED", e);
+            dispatch({
+                type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+            });
+        }
+    };
+};
