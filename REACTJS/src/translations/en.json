@@ -100,6 +100,41 @@
         "status": "Status",
         "restore-user": "Restore user"
     },
+    "manage-schedule": {
+        "title": "Manage doctor's health examination plan",
+        "choose-doctor": "Choose doctor",
+        "choose-date": "Choose date",
+        "save": "Save infor"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedule",
+            "no-schedule": "The doctor does not have an appointment at this time, please choose another time",
+            "choose": "Choose ",
+            "book-free": " and book (Free)"
+        },
+        "extra-infor-doctor": {
+            "text-address": "ADDRESS's CLINIC",
+            "price": "Examination price:",
+            "detail": "See details",
+            "payment": "Form of payments: ",
+            "hide-price": "Hide price list"
+        },
+        "booking-modal": {
+            "title": "Information to book a medical appointment",
+            "patientName": "Patient Name",
+            "phoneNumber": "Phone number",
+            "email": "Email",
+            "address": "Address",
+            "reason": "Reason for medical axamination",
+            "birthday": "Date of birth",
+            "gender": "Genders",
+            "btnConfirm": "Confirm",
+            "btnCancel": "Cancel",
+            "priceBooking": "Free booking",
+            "price": "Price: "
+        }
+    },
     "admin": {
         "manage-doctor": {
             "title": "Manage doctor information",
@@ -156,5 +191,17 @@
             "image": "Image",
             "name": "Name"
         }
+    },
+    "login": {
+        "login": "Login",
+        "username": "Username",
+        "password": "Password",
+        "forgot-password": "Forgot Password?",
+        "have-signup": "Don't have an account?",
+        "signup": "Sign up",
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "address": "Address",
+        "retrieve": "Retrieve"
     }
 }

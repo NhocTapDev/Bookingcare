@@ -38,64 +38,64 @@ class HomeFooter extends Component {
             <div className="content-center">
               <div className="footer-logo"></div>
               <div className="content-info">
-                <a>
+                <span>
                   <FormattedMessage id="homepage.footer-center-1" />
-                </a>
+                </span>
               </div>
               <div className="content-info">
-                <a>
+                <span>
                   <FormattedMessage id="homepage.footer-center-2" />
-                </a>
+                </span>
               </div>
               <div className="content-info">
-                <a>
+                <span>
                   <FormattedMessage id="homepage.footer-center-3" />
-                </a>
+                </span>
               </div>
               <div className="content-info">
-                <a>
+                <span>
                   <FormattedMessage id="homepage.footer-center-4" />
-                </a>
+                </span>
               </div>
               <div className="content-info">
-                <a>
+                <span>
                   <FormattedMessage id="homepage.footer-center-5" />
-                </a>
+                </span>
               </div>
               <div className="content-info">
-                <a>
+                <span>
                   <FormattedMessage id="homepage.footer-center-6" />
-                </a>
+                </span>
               </div>
             </div>
             <div className="content-right">
               <h3>
                 <FormattedMessage id="homepage.footer-right-header" />
               </h3>
-              <a href="#" className="content-info">
+              <span className="content-info">
                 <h4>
                   <FormattedMessage id="homepage.footer-right-header-child-1" />
                 </h4>
                 <p>
                   <FormattedMessage id="homepage.footer-right-child-1" />
                 </p>
-              </a>
-              <a href="#" className="content-info">
+              </span>
+              <span className="content-info">
                 <h4>
                   <FormattedMessage id="homepage.footer-right-header-child-2" />
                 </h4>
                 <p>
                   <FormattedMessage id="homepage.footer-right-child-2" />
                 </p>
-              </a>
-              <a href="#" className="content-info">
+              </span>
+              <span className="content-info">
                 <h4>
                   <FormattedMessage id="homepage.footer-right-header-child-3" />
                 </h4>
                 <p>
                   <FormattedMessage id="homepage.footer-right-child-3" />
                 </p>
-              </a>
+              </span>
             </div>
           </div>
         </div>

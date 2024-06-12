@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       timeType: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       doctorId: {
         type: Sequelize.INTEGER

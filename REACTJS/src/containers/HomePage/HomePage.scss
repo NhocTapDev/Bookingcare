@@ -62,6 +62,10 @@
         padding: 10px;
       }
 
+      .slick-track {
+        transform: translate3d(0px, 0px, 0px) !important;
+      }
+
       .slick-prev { 
         height: 35px !important;
         width: 35px !important;
