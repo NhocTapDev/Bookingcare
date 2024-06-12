@@ -114,7 +114,7 @@
         },
         "extra-infor-doctor": {
             "text-address": "ĐỊA CHỈ KHÁM",
-            "price": "Giá khám:",
+            "price": "Giá khám: ",
             "detail": "Xem chi tiết",
             "payment": "Hình thức thanh toán: ",
             "hide-price": "Ẩn bảng giá"

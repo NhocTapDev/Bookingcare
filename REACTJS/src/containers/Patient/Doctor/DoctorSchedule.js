@@ -7,6 +7,7 @@ import localization from "moment/locale/vi";
 import { LANGUAGES } from "../../../utils";
 import { getScheduleDoctorByDate } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
+import BookingModal from "./Modal/BookingModal";
 
 
 class DoctorSchedule extends Component {
@@ -138,6 +139,26 @@ class DoctorSchedule extends Component {
     }
   };
 
+  handleClickScheduleTime = (time) => {
+    // if (!this.props.isLoggedIn) this.props.history.push("/login");
+    this.setState({
+      isOpenModalBooking: true,
+      dataScheduleTimeModal: time
+    });
+  };
+
+  closeBookingClose = () => {
+    this.setState({
+      isOpenModalBooking: false,
+    });
+  };
+
+  toggle = () => {
+    this.setState({
+      isOpenModalBooking: !this.state.isOpenModalBooking,
+    });
+  };
+
   render() {
 
     let {
@@ -211,6 +232,12 @@ class DoctorSchedule extends Component {
             </div>
           </div>
         </div>
+        <BookingModal
+          isOpenModal={isOpenModalBooking}
+          closeBookingClose={this.closeBookingClose}
+          toggle={this.toggle}
+          dataTime={dataScheduleTimeModal}
+        />
       </>
     );
   }

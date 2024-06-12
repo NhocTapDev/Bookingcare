@@ -115,7 +115,7 @@
         },
         "extra-infor-doctor": {
             "text-address": "ADDRESS's CLINIC",
-            "price": "Examination price:",
+            "price": "Examination price: ",
             "detail": "See details",
             "payment": "Form of payments: ",
             "hide-price": "Hide price list"
