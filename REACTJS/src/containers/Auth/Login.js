@@ -84,6 +84,7 @@ class Login extends Component {
                 placeholder='Enter your username'
                 value={this.state.username}
                 onChange={(event) => this.handleOnChangeUsername(event)}
+                onKeyDown={(event) => this.handleKeyDown(event)}
               ></input>
             </div>
             <div className='col-12 form-group login-form'>
@@ -108,7 +109,9 @@ class Login extends Component {
               {this.state.errMessage}
             </div>
             <div className='col-12'>
-              <button className='btn-login' onClick={() => { this.handleLogin() }}>
+              <button className='btn-login'
+                onClick={() => { this.handleLogin() }}
+                onKeyDown={(event) => this.handleKeyDown(event)}>
                 <FormattedMessage id={"login.login"} />
               </button>
             </div>

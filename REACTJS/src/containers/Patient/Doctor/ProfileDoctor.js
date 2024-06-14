@@ -76,7 +76,7 @@ class DefaultClass extends Component {
 
   render() {
     let { dataProfile } = this.state;
-    let { language, isShowDescriptionDoctor, dataTime, isShowLinkDetail, isShowPrice, doctorId } = this.props;
+    let { language, isShowDescriptionDoctor, dataTime } = this.props;
     let nameVi = "", nameEn = "", positionVi, positionEn;
     if (dataProfile && dataProfile.positionData) {
       positionVi = `${dataProfile.positionData.valueVi}`;
