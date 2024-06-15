@@ -1,4 +1,9 @@
 {
+    "verifyemail": {
+        "loading": "Đang tải dữ liệu...",
+        "confirm-appointment": "Xác nhận lịch hẹn thành công!",
+        "no-appointment": "Lịch hẹn không tồn tại hoặc đã được xác nhận!"
+    },
     "homeheader": {
         "speciality": "Chuyên khoa",
         "searchdoctor": "Tìm bác sĩ theo chuyên khoa",

@@ -1,4 +1,9 @@
 {
+    "verifyemail": {
+        "loading": "Loading data...",
+        "confirm-appointment": "Appointment confirmed successfully!",
+        "no-appointment": "Appointment date does not exist or has been confirmed!"
+    },
     "homeheader": {
         "speciality": "Medical specialty",
         "searchdoctor": "Find a doctor by specialty",
