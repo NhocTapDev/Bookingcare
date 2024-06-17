@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class History extends Model {
+  class Limit_Bookings extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,24 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      History.belongsTo(models.User, { foreignKey: "doctorId", targetKey: "id", as: "doctorDataHistory", });
     }
   }
-  History.init(
+  Limit_Bookings.init(
     {
-      patientId: DataTypes.INTEGER,
       doctorId: DataTypes.INTEGER,
-      description: DataTypes.TEXT,
-      files: DataTypes.BLOB,
-      drugs: DataTypes.TEXT,
-      reason: DataTypes.STRING,
+      timeType: DataTypes.STRING,
+      limit: DataTypes.INTEGER,
       createdAt: DataTypes.DATE,
-      updatedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "History",
+      modelName: "Limit_Bookings",
     }
   );
-  return History;
+  return Limit_Bookings;
 };

@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Markdown, { foreignKey: "doctorId" });
       User.hasOne(models.Doctor_Infor, { foreignKey: "doctorId" });
       User.hasMany(models.Schedule, { foreignKey: "doctorId", as: "doctorData", });
+      User.hasMany(models.History, { foreignKey: "doctorId", as: "doctorDataHistory", });
+      User.hasMany(models.Booking, { foreignKey: "patientId", as: "patientData", });
+      User.hasMany(models.Invoice, { foreignKey: "doctorId", as: "doctorDataInvoice", });
+      User.hasMany(models.Invoice, { foreignKey: "patientId", as: "patientDataInvoice", });
     }
   };
   User.init({
@@ -26,9 +30,13 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     gender: DataTypes.STRING,
-    image: DataTypes.STRING,
+    image: DataTypes.BLOB,
     roleId: DataTypes.STRING,
     positionId: DataTypes.STRING,
+    tokenUser: DataTypes.STRING,
+    totalCost: DataTypes.INTEGER,
+    totalRevenue: DataTypes.INTEGER,
+    status: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',

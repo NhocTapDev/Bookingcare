@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       currentNumber: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       maxNumber: {
         type: Sequelize.INTEGER

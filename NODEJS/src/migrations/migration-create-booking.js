@@ -26,6 +26,34 @@ module.exports = {
       token: {
         type: Sequelize.STRING,
       },
+      imageRemedy: {
+        type: Sequelize.BLOB("long"),
+        allowNull: true,
+      },
+      patientName: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      patientPhoneNumber: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      patientAddress: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      patientReason: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      patientGender: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      patientBirthday: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

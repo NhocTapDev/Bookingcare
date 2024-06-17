@@ -1,37 +1,22 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("markdowns", {
+    await queryInterface.createTable("limit_bookings", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-
-      contentHTML: {
-        allowNull: false,
-        type: Sequelize.TEXT("long"),
-      },
-      contentMarkdown: {
-        allowNull: false,
-        type: Sequelize.TEXT("long"),
-      },
-      description: {
-        allowNull: true,
-        type: Sequelize.TEXT("long"),
-      },
       doctorId: {
-        allowNull: true,
         type: Sequelize.INTEGER,
       },
-      specialtyId: {
-        allowNull: true,
-        type: Sequelize.INTEGER,
+      timeType: {
+        type: Sequelize.STRING,
       },
-      clinicId: {
-        allowNull: true,
+      limit: {
         type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       createdAt: {
         allowNull: false,
@@ -44,6 +29,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("markdowns");
+    await queryInterface.dropTable("limit_bookings");
   },
 };

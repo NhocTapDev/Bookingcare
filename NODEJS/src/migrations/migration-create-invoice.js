@@ -1,37 +1,29 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("markdowns", {
+    await queryInterface.createTable("Invoices", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-
-      contentHTML: {
-        allowNull: false,
-        type: Sequelize.TEXT("long"),
-      },
-      contentMarkdown: {
-        allowNull: false,
-        type: Sequelize.TEXT("long"),
-      },
-      description: {
-        allowNull: true,
-        type: Sequelize.TEXT("long"),
-      },
       doctorId: {
-        allowNull: true,
         type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      patientId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
       },
       specialtyId: {
-        allowNull: true,
         type: Sequelize.INTEGER,
+        allowNull: true,
       },
-      clinicId: {
-        allowNull: true,
+      totalCost: {
         type: Sequelize.INTEGER,
+        defaultValue: 0,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
@@ -44,6 +36,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("markdowns");
+    await queryInterface.dropTable("Invoices");
   },
 };
