@@ -9,7 +9,7 @@
         }
         
         .slider-customize {
-          padding: 10px;
+          padding: 15px;
           border: 1px solid #eee;
           border-radius: 20px;
           width: 100%;
@@ -42,7 +42,7 @@
 
           &:hover {
             .slider-img {
-              transform: scale(0.95);
+              transform: scale(1.05);
               transition: all 0.5s ease;
             }
             
