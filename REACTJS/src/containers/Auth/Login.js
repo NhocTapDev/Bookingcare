@@ -60,48 +60,73 @@ class Login extends Component {
     })
   }
 
+  handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.keyCode === 13) {
+      this.handleLogin();
+    }
+  };
+
   render() {
     return (
       <div className='login-background'>
         <div className='login-container'>
           <div className='login-content row'>
-            <div className='col-12 text-center login-text'>Login</div>
+            <div className='col-12 text-center login-text'>
+              <FormattedMessage id={"login.login"} />
+            </div>
             <div className='col-12 form-group login-form'>
-              <label>UserName</label>
+              <label>
+                <FormattedMessage id={"login.username"} />
+              </label>
               <input
                 type='text'
                 className='form-control login-input'
                 placeholder='Enter your username'
                 value={this.state.username}
                 onChange={(event) => this.handleOnChangeUsername(event)}
+                onKeyDown={(event) => this.handleKeyDown(event)}
               ></input>
             </div>
             <div className='col-12 form-group login-form'>
-              <label>Password</label>
+              <label>
+                <FormattedMessage id={"login.password"} />
+              </label>
               <input
                 type={this.state.isShowPassword ? 'text' : 'password'}
                 className='form-control login-input'
                 placeholder='Enter your username'
                 onChange={(event) => this.handleOnChangePassword(event)}
+                onKeyDown={(event) => this.handleKeyDown(event)}
               ></input>
               <i className={this.state.isShowPassword ? 'far fa-eye password-icon' : 'far fa-eye-slash password-icon'} onClick={(event) => this.handleShowHidePassword(event)}></i>
             </div>
             <div className='col-12'>
-              <span className='forgot-password'>Forgot your password?</span>
+              <span className='forgot-password'>
+                <FormattedMessage id={"login.forgot-password"} />
+              </span>
             </div>
             <div className='col-12' style={{ color: "red" }}>
               {this.state.errMessage}
             </div>
             <div className='col-12'>
-              <button className='btn-login' onClick={() => { this.handleLogin() }}>Login</button>
+              <button className='btn-login'
+                onClick={() => { this.handleLogin() }}
+                onKeyDown={(event) => this.handleKeyDown(event)}
+              >
+                <FormattedMessage id={"login.login"} />
+              </button>
             </div>
             <div className='col-12 social-login'>
               <i className='fab fa-google-plus-g google-icon'></i>
               <i className='fab fa-facebook-f facebook-icon'></i>
             </div>
             <div className='col-12 section-signup'>
-              <span>Don't have an account?</span>
-              <span className='sign-up'>Sign Up</span>
+              <span>
+                <FormattedMessage id={"login.have-signup"} />
+              </span>
+              <span className='sign-up'>
+                <FormattedMessage id={"login.signup"} />
+              </span>
             </div>
           </div>
         </div>

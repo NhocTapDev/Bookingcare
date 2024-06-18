@@ -19,7 +19,7 @@
             justify-content: center;
 
             .img {
-              background: url('../../../assets/medical-facility/114348-bv-viet-duc.jpg');
+              // background: url('../../../assets/medical-facility/114348-bv-viet-duc.jpg');
               background-repeat: no-repeat;
               background-size: cover;
               background-position: center center;
@@ -50,10 +50,12 @@
 
           &:hover {
             .slider-img {
-              opacity: 0.8;
+              transform: scale(1.05);
+              transition: all 0.5s ease;
             }
             
             .slider-title {
+              transition: all 0.5s ease;
               color: #45c3d2;
             }
           }

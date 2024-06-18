@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
+import { withRouter } from "react-router";
 
 class OutStandingDoctor extends Component {
 
@@ -27,8 +28,13 @@ class OutStandingDoctor extends Component {
     }
   }
 
+  handleViewDetailDoctor = (doctor) => {
+    if (this.props.history) {
+      this.props.history.push(`/detail-doctor/${doctor.id}`);
+    }
+  };
+
   render() {
-    console.log('sgsdgsd',this.props.topDoctorsRedux)
     let arrDoctors = this.state.arrDoctors;
     let { language } = this.props;
 
@@ -61,7 +67,7 @@ class OutStandingDoctor extends Component {
                 let nameVi = `${item.lastName} ${item.firstName}`;
                 let nameEn = `${item.firstName} ${item.lastName}`;
                 return (
-                  <div className="slider-customize" key={index}>
+                  <div className="slider-customize" key={index} onClick={() => this.handleViewDetailDoctor(item)}>
                     <div className="slider-img">
                       <div className="img"
                         style={{
@@ -107,4 +113,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor));

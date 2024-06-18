@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import "./ManageDoctor.scss";
 import * as actions from "../../../store/actions";
 import { CRUD_ACTIONS, LANGUAGES } from "../../../utils";
-
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import Select from "react-select";
+import { getDetailInforDoctor } from "../../../services/userService";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -22,7 +22,8 @@ class ManageDoctor extends Component {
       contentHTML: "",
       selectedOption: "",
       description: "",
-      listDoctors: []
+      listDoctors: [],
+      hasOldData: false,
     };
   }
 
@@ -71,17 +72,80 @@ class ManageDoctor extends Component {
   }
 
   handleSaveContentMarkdown = () => {
+    let { hasOldData } = this.state;
     this.props.saveDetailDoctor({
       contentHTML: this.state.contentHTML,
       contentMarkdown: this.state.contentMarkdown,
       description: this.state.description,
-      doctorId: this.state.selectedOption.value
+      doctorId: this.state.selectedOption.value,
+      action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
     });
   }
 
-  handleChange = (selectedOption) => {
-    console.log("selectedOption", selectedOption)
+  handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedOption });
+
+    let { listPayment, listPrice, listProvince } = this.state;
+    let res = await getDetailInforDoctor(selectedOption.value);
+
+    if (res && res.errCode === 0 && res.data && res.data.Markdown) {
+      let markdown = res.data.Markdown;
+
+      let addressClinic = "",
+        nameClinic = "",
+        note = "",
+        paymentId = "",
+        priceId = "",
+        provinceId = "",
+        selectedPayment = "",
+        selectedPrice = "",
+        selectedProvice = "";
+
+      if (res.data.Doctor_Infor) {
+        addressClinic = res.data.Doctor_Infor.addressClinic;
+        nameClinic = res.data.Doctor_Infor.nameClinic;
+        note = res.data.Doctor_Infor.note;
+        paymentId = res.data.Doctor_Infor.paymentId;
+        priceId = res.data.Doctor_Infor.priceId;
+        provinceId = res.data.Doctor_Infor.provinceId;
+
+        selectedPayment = listPayment.find((item) => {
+          return item && item.value === paymentId;
+        });
+        selectedPrice = listPrice.find((item) => {
+          return item && item.value === priceId;
+        });
+        selectedProvice = listProvince.find((item) => {
+          return item && item.value === provinceId;
+        });
+      }
+
+      this.setState({
+        contentHTML: markdown.contentHTML,
+        contentMarkdown: markdown.contentMarkdown,
+        description: markdown.description,
+        hasOldData: true,
+        addressClinic: addressClinic,
+        nameClinic: nameClinic,
+        note: note,
+        selectedPayment: selectedPayment,
+        selectedPrice: selectedPrice,
+        selectedProvice: selectedProvice,
+      });
+    } else {
+      this.setState({
+        contentHTML: "",
+        contentMarkdown: "",
+        description: "",
+        hasOldData: false,
+        addressClinic: "",
+        nameClinic: "",
+        note: "",
+        selectedPayment: "",
+        selectedPrice: "",
+        selectedProvice: "",
+      });
+    }
   };
 
   handleOnChangeDesc = (event, id) => {
@@ -97,6 +161,7 @@ class ManageDoctor extends Component {
   };
 
   render() {
+    let { hasOldData } = this.state;
 
     return (
       <React.Fragment>
@@ -111,7 +176,7 @@ class ManageDoctor extends Component {
               </label>
               <Select
                 value={this.state.selectedOption}
-                onChange={this.handleChange}
+                onChange={this.handleChangeSelect}
                 options={this.state.listDoctors}
                 placeholder={
                   <FormattedMessage id="admin.manage-doctor.select-doctor" />
@@ -241,22 +306,19 @@ class ManageDoctor extends Component {
               style={{ height: "300px" }}
               renderHTML={text => mdParser.render(text)}
               onChange={this.handleEditorChange}
+              value={this.state.contentMarkdown}
             />
           </div>
 
           <button
-            className="save-content-doctor btn btn-primary"
             onClick={() => this.handleSaveContentMarkdown()}
-          // className={
-          //   hasOldData === true
-          //     ? "save-content-doctor"
-          //     : "create-content-doctor"
-          // }
+            className={
+              hasOldData === true
+                ? "save-content-doctor btn btn-primary"
+                : "create-content-doctor btn btn-primary"
+            }
           >
-            <span>
-              <FormattedMessage id="admin.manage-doctor.save" />
-            </span>
-            {/* {hasOldData === true ? (
+            {hasOldData === true ? (
               <span>
                 <FormattedMessage id="admin.manage-doctor.save" />
               </span>
@@ -264,7 +326,7 @@ class ManageDoctor extends Component {
               <span>
                 <FormattedMessage id="admin.manage-doctor.add" />
               </span>
-            )} */}
+            )}
           </button>
         </div>
       </React.Fragment>
@@ -281,7 +343,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllDoctors: (id) => dispatch(actions.fetchAllDoctors()),
+    fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
     saveDetailDoctor: (data) => dispatch(actions.saveDetailDoctor(data))
   };
 };

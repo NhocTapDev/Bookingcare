@@ -42,10 +42,12 @@
 
           &:hover {
             .slider-img {
-              opacity: 0.8;
+              transform: scale(0.95);
+              transition: all 0.5s ease;
             }
             
             .slider-title {
+              transition: all 0.5s ease;
               color: #45c3d2;
             }
           }
