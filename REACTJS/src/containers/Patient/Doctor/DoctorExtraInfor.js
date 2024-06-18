@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./DoctorExtraInfor.scss";
+import Select from "react-select";
 import { LANGUAGES } from "../../../utils";
-import { getExtraInforDoctorById, } from "../../../services/userService";
+import { getExtraInforDoctorById, getScheduleDoctorByDate } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
 import { NumericFormat } from 'react-number-format';
 
@@ -42,6 +43,7 @@ class DoctorExtraInfor extends Component {
       isShowDetailInfor: status,
     });
   };
+  
   render() {
     let { isShowDetailInfor, extraInfor } = this.state;
     let { language } = this.props;

@@ -5,8 +5,29 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions/appActions";
 import { withRouter } from "react-router";
+import MenuHomeHeader from "./MenuHomeHeader";
+import { emitter } from "../../utils/emitter";
+import { Alert } from "reactstrap";
 
 class HomeHeader extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showMenuSearchSpecialty: false,
+      previewImgURL: []
+    };
+  }
+
+  componentDidMount() {
+    let imageBase64 = "";
+    if (this.props && this.props.userInfo && this.props.userInfo.image) {
+      imageBase64 = new Buffer.from(this.props.userInfo.image, "base64").toString("binary");
+    }
+
+    this.setState({
+      previewImgURL: imageBase64,
+    });
+  }
 
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
@@ -18,8 +39,40 @@ class HomeHeader extends Component {
     }
   };
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.userInfo !== this.props.userInfo) {
+      let imageBase64 = "";
+      if (this.props.userInfo.image) {
+        imageBase64 = new Buffer.from(this.props.userInfo.image, "base64").toString("binary");
+      }
+
+      this.setState({
+        previewImgURL: imageBase64,
+      });
+    }
+  }
+
+  handleOnClickSeeMoreDoctor = () => {
+    if (this.props.history) {
+      this.props.history.push(`/list-oustanding-doctor`);
+    }
+  };
+
+  handleClickSeeMoreSpecialty = () => {
+    if (this.props.history) {
+      this.props.history.push(`/list-specialty`);
+    }
+  };
+
+  handleClickSeeMoreSpecialty = () => {
+    if (this.props.history) {
+      this.props.history.push(`/list-medical-facility`);
+    }
+  };
+
   render() {
     let language = this.props.language;
+    let { user } = this.state;
 
     return (
       <React.Fragment>
@@ -32,29 +85,26 @@ class HomeHeader extends Component {
               ></div>
             </div>
             <div className="center-content col-lg-5 col-xl-6">
-              <div className="child-content">
+              <div className="child-content" onClick={() => this.handleClickSeeMoreSpecialty()}>
                 <b>
                   <FormattedMessage id="homeheader.speciality" />
                 </b>
-
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.searchdoctor" />
                 </div>
               </div>
-              <div className="child-content">
+              <div className="child-content" onClick={() => this.handleClickSeeMoreSpecialty()}>
                 <b>
                   <FormattedMessage id="homeheader.health-facility" />
                 </b>
-
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.select-room" />
                 </div>
               </div>
-              <div className="child-content">
+              <div className="child-content" onClick={() => this.handleOnClickSeeMoreDoctor()}>
                 <b>
                   <FormattedMessage id="homeheader.doctor" />
                 </b>
-
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.select-doctor" />
                 </div>
@@ -63,7 +113,6 @@ class HomeHeader extends Component {
                 <b>
                   <FormattedMessage id="homeheader.handbook" />
                 </b>
-
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.follow-posts" />
                 </div>
@@ -72,7 +121,6 @@ class HomeHeader extends Component {
             <div className="right-content col-9 col-lg-5 col-xl-5 col-sm-9">
               <div
                 className="search"
-              // onClick={() => this.handleClickShowHomeMenuSearchSpecialty()}
               >
                 <i className="fas fa-search"></i>
                 <FormattedMessage id="banner.search">
@@ -80,12 +128,6 @@ class HomeHeader extends Component {
                     <input type="text" placeholder={placeholder} />
                   )}
                 </FormattedMessage>
-
-                {/* {this.state.showMenuSearchSpecialty && (
-                  <HomeMenuSearchSpecialty
-                    showMenuSearchSpecialty={this.state.showMenuSearchSpecialty}
-                  />
-                )} */}
               </div>
               <div className="support">
                 <i className="fas fa-question-circle"></i>
@@ -99,14 +141,14 @@ class HomeHeader extends Component {
               </div>
               <div
                 className="avatar-profile"
-              // style={{
-              //   backgroundImage: `url(${this.state.previewImgURL ? this.state.previewImgURL : ""})`
-              // }}
+                style={{
+                  backgroundImage: `url(${this.state.previewImgURL ? this.state.previewImgURL : ""})`
+                }}
               >
               </div>
               <div className="menu-home-header">
-                <i className="fas fa-bars menu-home"></i>
-                {/* <MenuHomeHeader /> */}
+                {/* <i className="fas fa-bars menu-home"></i> */}
+                <MenuHomeHeader />
               </div>
             </div>
           </div>

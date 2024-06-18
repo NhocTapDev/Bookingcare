@@ -7,15 +7,18 @@ import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import IntlProviderWrapper from "./hoc/IntlProviderWrapper";
 
-
 import { Provider } from 'react-redux';
 import reduxStore, { persistor } from './redux';
+
+import { GoogleAuthProvider } from "./containers/Auth/resources/googleAuth";
 
 const renderApp = () => {
     ReactDOM.render(
         <Provider store={reduxStore}>
             <IntlProviderWrapper>
-                <App persistor={persistor}/>
+                <GoogleAuthProvider>
+                    <App persistor={persistor} />
+                </GoogleAuthProvider>
             </IntlProviderWrapper>
         </Provider>,
         document.getElementById('root')

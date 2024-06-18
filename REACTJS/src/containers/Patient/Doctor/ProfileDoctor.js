@@ -8,6 +8,7 @@ import { NumericFormat } from 'react-number-format';
 import _ from "lodash";
 import moment from "moment";
 import localization from "moment/locale/vi"; //su dung chung cho cai mac dinh la tieng viet
+import { Link } from "react-router-dom";
 
 class DefaultClass extends Component {
   constructor(props) {
@@ -47,7 +48,6 @@ class DefaultClass extends Component {
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-
   renderTimeBooking = (dataTime) => {
     let { language } = this.props;
 
@@ -76,7 +76,13 @@ class DefaultClass extends Component {
 
   render() {
     let { dataProfile } = this.state;
-    let { language, isShowDescriptionDoctor, dataTime } = this.props;
+    let {
+      language,
+      isShowDescriptionDoctor,
+      dataTime,
+      isShowLinkDetail,
+      isShowPrice,
+      doctorId, } = this.props;
     let nameVi = "", nameEn = "", positionVi, positionEn;
     if (dataProfile && dataProfile.positionData) {
       positionVi = `${dataProfile.positionData.valueVi}`;
@@ -91,7 +97,7 @@ class DefaultClass extends Component {
           <div className="intro-left col-4 col-xl-2 col-lg-3 col-md-4">
             <div
               className="avatar"
-              style={{ backgroundImage: `url(${dataProfile.image})` }}
+              style={{ backgroundImage: `url(${dataProfile && dataProfile.image ? dataProfile.image : ""})` }}
             ></div>
           </div>
           <div className="intro-right col-8 col-xl-10 col-lg-9 col-md-8">
@@ -118,35 +124,44 @@ class DefaultClass extends Component {
             </div>
           </div>
         </div>
-        <div className="price">
-          <span className="left">
-            <FormattedMessage id="patient.extra-infor-doctor.price" />
-          </span>
-          <span className="right">
-            {dataProfile &&
-              dataProfile.Doctor_Infor &&
-              language === LANGUAGES.VI && (
-                <NumericFormat
-                  className="currency"
-                  value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
-                  displayType={"text"}
-                  thousandSeparator={true}
-                  suffix={"VND"}
-                />
-              )}
-            {dataProfile &&
-              dataProfile.Doctor_Infor &&
-              language === LANGUAGES.EN && (
-                <NumericFormat
-                  className="currency"
-                  value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
-                  displayType={"text"}
-                  thousandSeparator={true}
-                  suffix={"$"}
-                />
-              )}
-          </span>
-        </div>
+        {isShowLinkDetail === true && (
+          <div className="view-detail-doctor">
+            <Link to={`/detail-doctor/${doctorId}`}>
+              <FormattedMessage id="homepage.more-infor" />
+            </Link>
+          </div>
+        )}
+        {isShowPrice === true && (
+          <div className="price">
+            <span className="left">
+              <FormattedMessage id="patient.extra-infor-doctor.price" />
+            </span>
+            <span className="right">
+              {dataProfile &&
+                dataProfile.Doctor_Infor &&
+                language === LANGUAGES.VI && (
+                  <NumericFormat
+                    className="currency"
+                    value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    suffix={"VND"}
+                  />
+                )}
+              {dataProfile &&
+                dataProfile.Doctor_Infor &&
+                language === LANGUAGES.EN && (
+                  <NumericFormat
+                    className="currency"
+                    value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    suffix={"$"}
+                  />
+                )}
+            </span>
+          </div>
+        )}
       </div>
     );
   }

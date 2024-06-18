@@ -105,6 +105,27 @@
         "status": "Status",
         "restore-user": "Restore user"
     },
+    "profile-setting": {
+        "my-account": "My account",
+        "name": "Name",
+        "gender": "Gender",
+        "phone": "Phone",
+        "address": "Address",
+        "password": "Password",
+        "btn-edit-profile": "Edit Profile",
+        "breadcrumb-home": "Home",
+        "breadcrumb-settings": "Settings",
+        "profile": "Profile",
+        "medical-history": "Medical history"
+    },
+    "menu-homeheader": {
+        "homepage": "HomePage",
+        "login": "Login",
+        "forgot-password": "Forgot Password",
+        "sign-up": "Sign Up Account",
+        "profile": "Profile",
+        "logout": "Logout"
+    },
     "manage-schedule": {
         "title": "Manage doctor's health examination plan",
         "choose-doctor": "Choose doctor",
@@ -195,6 +216,55 @@
             "title-edit": "Edit Specialty",
             "image": "Image",
             "name": "Name"
+        }
+    },
+    "manage-patient": {
+        "title": "MANAGE PATIENT",
+        "choose-date": "Choose a date of examination",
+        "examination-time": "Examination time",
+        "patient-name": "Patient's name",
+        "address": "Address",
+        "phone-number": "Phone number",
+        "gender": "Gender",
+        "reason": "Reason for examination",
+        "actions": "Actions",
+        "send-prescriptions": "Send prescriptions",
+        "create-prescriptions": "Create prescriptions",
+        "cancel": "Cancel",
+        "prescription": "Prescription",
+        "view": "view",
+        "send-prescriptions-to-patients": "Send prescriptions to patients",
+        "email-patient": "Email patient",
+        "select-the-prescription-file": "Select the prescription file",
+        "there-is-a-pre-created-prescription-file": "There is a pre-created prescription file",
+        "choose-other-file": "Choose other file",
+        "send": "Send",
+        "download": "Download"
+    },
+    "medical-history": {
+        "title": "Medical examination history",
+        "filters": "Filters",
+        "from-date": "From date",
+        "to-date": "To date",
+        "apply": "Apply",
+        "reset": "Reset",
+        "date-examination": "Medical examination day",
+        "reason": "Reason",
+        "doctor": "Doctor",
+        "prescription": "Prescription",
+        "doctor-advice": "Doctor's advice",
+        "receipt": "Receipt"
+    },
+    "admin-dashboard": {
+        "dashboard": {
+            "greeting": "Hi, Welcome back",
+            "weekly-revenue": "Weekly Revenue",
+            "new-users": "New Users",
+            "total-health-appointment-done": "Total Health Appointment Done",
+            "total-doctors": "Total Doctors",
+            "top-3-doctors-with-the-highest-revenue-of-the-year": "Top 3 doctors with the highest revenue of the year",
+            "top-4-vip-patients": "Top 4 vip patients",
+            "monthly-revenue-specialty": "Monthly Revenue Specialty"
         }
     },
     "login": {

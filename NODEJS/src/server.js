@@ -4,12 +4,20 @@ import viewEngine from "./config/viewEngine";
 import initWebRoutes from "./route/web";
 import connectDB from "./config/connectDB";
 import cors from "cors";
-
-require('dotenv').config();
+require("dotenv").config();
 
 let app = express();
-// app.use(cors({ origin: true }));
+// app.use(
+//   cors({
+//     origin: true,
+//     optionsSuccessStatus: 200,
+//     credentials: true,
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   })
+// );
 
+
+// Add headers before the routes are defined
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader("Access-Control-Allow-Origin", process.env.URL_REACT);
@@ -35,8 +43,6 @@ app.use(function (req, res, next) {
 });
 
 //config app
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
@@ -45,10 +51,9 @@ initWebRoutes(app);
 
 connectDB();
 
-//Port === undefined => port = 8080
-let port = process.env.PORT || 8080;
+let port = process.env.PORT || 808;
 
 app.listen(port, () => {
     //callback
-    console.log("Backend Nodejs is runing on the port : " + port)
-})
+    console.log("Backend Nodejs is running on the port : " + port);
+});

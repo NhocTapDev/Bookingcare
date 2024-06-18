@@ -8,7 +8,6 @@ import { emitter } from "../../utils/emitter";
 import ModalEditUser from "./ModalEditUser";
 
 class UserManage extends Component {
-
     constructor(props) {
         super(props);
         this.state = {

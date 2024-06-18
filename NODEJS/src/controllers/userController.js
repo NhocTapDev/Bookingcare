@@ -74,11 +74,123 @@ let getAllCode = async (req, res) => {
   }
 };
 
+let postForgotPassword = async (req, res) => {
+  try {
+    let infor = await userService.postForgotPasswordService(req.body);
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
+let postVerifyRetrievePassword = async (req, res) => {
+  try {
+    let infor = await userService.postVerifyRetrievePasswordService(req.body);
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
+let handleLoginGoogle = async (req, res) => {
+  try {
+    let infor = await userService.handleLoginGoogle(req.body);
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
+let filterUsers = async (req, res) => {
+  try {
+    let infor = await userService.filterUsers(req.body);
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
+let filterRestoreUsers = async (req, res) => {
+  try {
+    let infor = await userService.filterRestoreUsers(req.body);
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
+let handleEditPassword = async (req, res) => {
+  try {
+    let infor = await userService.handleEditPassword(req.body);
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
+let handleRestoreUser = async (req, res) => {
+  try {
+    let infor = await userService.handleRestoreUser(req.body);
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
+let deleteRestoreUser = async (req, res) => {
+  try {
+    let infor = await userService.deleteRestoreUser(req.body);
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
 module.exports = {
   handleLogin: handleLogin,
   handleGetAllUsers: handleGetAllUsers,
   handleCreateNewUser: handleCreateNewUser,
   handleEditUser: handleEditUser,
   handleDeleteUser: handleDeleteUser,
-  getAllCode: getAllCode
-}
+  getAllCode: getAllCode,
+  postForgotPassword: postForgotPassword,
+  postVerifyRetrievePassword: postVerifyRetrievePassword,
+  handleLoginGoogle: handleLoginGoogle,
+  filterUsers: filterUsers,
+  handleEditPassword: handleEditPassword,
+  filterRestoreUsers: filterRestoreUsers,
+  handleRestoreUser: handleRestoreUser,
+  deleteRestoreUser: deleteRestoreUser
+};

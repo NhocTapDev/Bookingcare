@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from "connected-react-router";
 
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
@@ -12,7 +13,6 @@ import { FormattedMessage } from "react-intl";
 import _ from "lodash";
 
 class Header extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -41,18 +41,17 @@ class Header extends Component {
         });
     }
 
-    // handleLogout = () => {
-    //     this.props.history.push("/login");
-    // }
+    handleLogout = () => {
+        this.props.history.push("/login");
+    }
 
     render() {
-        const { processLogout } = this.props;
         const { language, userInfo } = this.props;
 
         return (
             <div className="header-container">
                 <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+                    <Navigator menus={this.state.menuApp} />
                 </div>
 
                 <div className="languages">
@@ -79,14 +78,11 @@ class Header extends Component {
                     >
                         EN
                     </span>
-                    {/* <div
+                    <div
                         className="btn btn-logout"
                         onClick={() => this.handleLogout()}
                         title="Log out"
                     >
-                        <i className="fas fa-sign-out-alt"></i>
-                    </div> */}
-                    <div className="btn btn-logout" onClick={processLogout} title="Log out">
                         <i className="fas fa-sign-out-alt"></i>
                     </div>
                 </div>
@@ -108,7 +104,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        processLogout: () => dispatch(actions.processLogout()),
         changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language))
     };
 };

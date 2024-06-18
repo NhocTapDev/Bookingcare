@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import * as actions from "../store/actions";
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
@@ -15,6 +16,19 @@ import CustomScrollbars from "../components/CustomScrollbars";
 import DetailDoctor from "./Patient/Doctor/DetailDoctor";
 import Doctor from "../routes/Doctor";
 import VerifyEmail from "./Patient/VerifyEmail";
+import DetailSpecialty from "./Patient/Specialty/DetailSpecialty";
+import Logout from "./Auth/Logout";
+import Signup from "./Auth/Signup";
+import DetailClinic from "./Patient/Clinic/DetailClinic";
+import NotFound from "./System/NotFound";
+import ForgotPassword from "./Auth/ForgotPassword";
+import RetrievePassword from "./Auth/RetrievePassword";
+import ListSpecialty from "./HomePage/SectionList/ListSpecialty";
+import ListOutStandingDoctor from "./HomePage/SectionList/ListOutStandingDoctor";
+import ListMedicalFacility from "./HomePage/SectionList/ListMedicalFacility";
+import indexAdminDashboard from "./AdminDashboard/indexAdminDashboard";
+import { getOptionGroupUnstyledUtilityClass } from "@mui/base";
+import ProfileSetting from "./Profile/ProfileSetting";
 
 class App extends Component {
 
@@ -44,14 +58,23 @@ class App extends Component {
                         <div className="content-container">
                             <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                                 <Switch>
+                                    <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
-                                    <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
-                                    <Route path={"/doctor/"} component={userIsAuthenticated(Doctor)} />
-                                    <Route path={path.HOMEPAGE} component={HomePage} />
+                                    <Route path={path.LOG_OUT} component={Logout} />
+                                    <Route path={path.SIGNUP} exact component={Signup} />
+                                    <Route path={path.FORGOT_PASSWORD} exact component={ForgotPassword} />
+                                    <Route path={path.RETRIEVE_PASSWORD} component={RetrievePassword} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
-
+                                    <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
+                                    <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
+                                    <Route path={path.LIST_SPECIALTY} exact component={ListSpecialty} />
+                                    <Route path={path.LIST_MEDICAL_FACILITY} exact component={ListMedicalFacility} />
+                                    <Route path={path.LIST_OUSTANDING_DOCTOR} exact component={ListOutStandingDoctor} />
+                                    <Route path={path.PROFILE_SETTING} component={userIsAuthenticated(ProfileSetting)} />
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
+                                    <Route path={path.ADMIN_DASHBOARD} component={userIsAuthenticated(indexAdminDashboard)} />
+                                    <Route path="*"><NotFound /></Route>
                                 </Switch>
                             </CustomScrollbars>
 

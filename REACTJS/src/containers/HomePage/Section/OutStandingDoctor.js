@@ -8,7 +8,6 @@ import { LANGUAGES } from "../../../utils";
 import { withRouter } from "react-router";
 
 class OutStandingDoctor extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +33,12 @@ class OutStandingDoctor extends Component {
     }
   };
 
+  handleOnClickSeeMoreDoctor = () => {
+    if (this.props.history) {
+      this.props.history.push(`/list-oustanding-doctor`);
+    }
+  };
+
   render() {
     let arrDoctors = this.state.arrDoctors;
     let { language } = this.props;
@@ -48,7 +53,7 @@ class OutStandingDoctor extends Component {
               </span>
             </div>
             <div className="section-header-option">
-              <button>
+              <button onClick={() => this.handleOnClickSeeMoreDoctor()}>
                 <span>
                   <FormattedMessage id="homepage.more-infor" />
                 </span>
@@ -60,7 +65,7 @@ class OutStandingDoctor extends Component {
               {arrDoctors && arrDoctors.length > 0 && arrDoctors.map((item, index) => {
                 let imageBase64 = "";
                 if (item.image) {
-                  imageBase64 = new Buffer(item.image, "base64").toString("binary");
+                  imageBase64 = new Buffer.from(item.image, "base64").toString("binary");
                 }
                 let positionVi = `${item.positionData.valueVi}`;
                 let positionEn = `${item.positionData.valueEn}`;
@@ -84,7 +89,13 @@ class OutStandingDoctor extends Component {
                         {language === LANGUAGES.VI ? nameVi : nameEn}
                       </span>
                       <br></br>
-                      <span className="slider-doctor-specialty">Cơ Xương Khớp</span>
+                      <span className="slider-doctor-specialty">
+                        {item.Doctor_Infor &&
+                          item.Doctor_Infor.specialtyData &&
+                          item.Doctor_Infor.specialtyData.name
+                          ? item.Doctor_Infor.specialtyData.name
+                          : ""}
+                      </span>
                     </div>
                   </div>
                 )
